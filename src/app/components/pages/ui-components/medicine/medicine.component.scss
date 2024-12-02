@@ -1,0 +1,181 @@
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.sidebarNav.blur {
+  filter: blur(5px); /* Làm mờ */
+  pointer-events: none; /* Ngăn người dùng tương tác */
+  transition: filter 0.3s ease-in-out;
+}
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.search-add-container input {
+
+  border-radius: 20px;
+  width: 70%;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-add-container button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.medicine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+.medicine-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,
+      minmax(280px, 1fr));
+  /* Thiết lập grid cho màn hình lớn */
+  gap: 20px;
+  /* Khoảng cách giữa các card */
+  justify-items: center;
+  padding: 10px;
+}
+
+.medicine-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
+.medicine-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.medicine-info {
+  flex: 1;
+}
+
+.medicine-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #34495e;
+}
+
+.medicine-description {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin: 10px 0;
+}
+
+.medicine-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.medicine-price {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.medicine-quantity {
+  font-weight: normal;
+  color: #16a085;
+}
+
+
+@media (max-width: 768px) {
+  .medicine-card {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%;
+  }
+
+  .medicine-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .medicine-name {
+    font-size: 1.2rem;
+  }
+
+  .medicine-details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .medicine-price,
+  .medicine-quantity {
+    font-size: 1rem;
+  }
+
+  .search-add-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-add-container input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .medicine-card {
+    padding: 10px;
+  }
+
+  .medicine-name {
+    font-size: 1.1rem;
+  }
+
+  .medicine-price {
+    font-size: 1rem;
+  }
+
+  .medicine-quantity {
+    font-size: 0.9rem;
+  }
+
+  .search-add-container input {
+    width: 100%;
+  }
+
+  .search-add-container button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}

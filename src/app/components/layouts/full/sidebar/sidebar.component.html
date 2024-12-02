@@ -1,0 +1,17 @@
+<style>
+    app-branding{
+        display: flex;
+        justify-content: center;
+        margin-left: 10%;
+        z-index: 10;
+    }
+</style>
+<div style="z-index: 10;" class="d-flex align-items-center justify-content-between">
+    <app-branding></app-branding>
+    @if(showToggle) {
+        <a href="javascript:void(0)" (click)="toggleMobileNav.emit()"
+            class="d-flex justify-content-center ng-star-inserted icon-40 align-items-center mat-body-1">
+            <i-tabler name="x" class="icon-20 d-flex"></i-tabler>
+        </a>
+        }
+</div>
