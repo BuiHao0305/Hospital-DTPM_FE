@@ -1,3 +1,57 @@
-<p>
-  add-prescription works!
-</p>
+<div class="prescription-container">
+  <h2>Create Prescription</h2>
+
+  <form [formGroup]="prescriptionForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="patientName">Patient Name</label>
+      <input
+        id="patientName"
+        formControlName="patientName"
+        type="text"
+        class="form-control"
+      />
+      @if (
+        prescriptionForm.get("patientName")?.invalid &&
+        prescriptionForm.get("patientName")?.touched
+      ) {
+        <div class="error">Patient Name is required.</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="consultationFee">Consultation Fee</label>
+      <input
+        id="consultationFee"
+        formControlName="consultationFee"
+        type="number"
+        class="form-control"
+      />
+      @if (
+        prescriptionForm.get("consultationFee")?.invalid &&
+        prescriptionForm.get("consultationFee")?.touched
+      ) {
+        <div class="error">Valid Consultation Fee is required.</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="totalCost">Total Cost</label>
+      <input
+        id="totalCost"
+        formControlName="totalCost"
+        type="number"
+        class="form-control"
+        readonly
+      />
+     
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="prescriptionForm.invalid"
+      class="btn btn-primary"
+    >
+      Submit Prescription
+    </button>
+  </form>
+</div>
