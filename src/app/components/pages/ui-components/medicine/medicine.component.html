@@ -18,23 +18,21 @@
 </div>
 <div class="medicine-container">
   @for (medicine of medicines; track $index) {
-    <div class="medicine-card">
-      <div class="medicine-info">
-        <h1 class="medicine-name">{{ medicine.name }}</h1>
-        <p class="medicine-description">{{ medicine.description }}</p>
-        <div class="medicine-details">
-          <span class="medicine-price">${{ medicine.price }}</span>
-          <span class="medicine-quantity"
-            >Quantity: {{ medicine.quantity }}</span
-          >
-        </div>
+  <div class="medicine-card">
+    <div class="medicine-info">
+      <h1 class="medicine-name">{{ medicine.name }}</h1>
+      <p class="medicine-description">{{ medicine.description }}</p>
+      <span class="medicine-category">Category {{ medicine.category | medicineCategory }}</span>
+      <div class="medicine-details">
+        <span class="medicine-price">${{ medicine.price }}</span>
+        
       </div>
+      <span class="medicine-quantity">Quantity: {{ medicine.quantity }}</span>
     </div>
+  </div>
   }
 </div>
 
 @if (showChild) {
-  <app-add-medicine
-    (previewVisible)="showChildClick($event)"
-  ></app-add-medicine>
+<app-add-medicine (previewVisible)="showChildClick($event)"></app-add-medicine>
 }
