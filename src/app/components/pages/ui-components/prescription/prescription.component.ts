@@ -32,7 +32,7 @@ export interface Prescription {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    MatPaginatorModule, // Import MatPaginatorModule here
+    MatPaginatorModule, 
     MatTableModule,
   ],
 })

@@ -14,5 +14,13 @@ export class MedicineService {
   getMedicines(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
-
+  addMedicine(medicine: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, medicine);
+  }
+  getMedicineById(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+  updateMedicine(id: string, medicine: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, medicine);
+  }
 }

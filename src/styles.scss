@@ -11,3 +11,8 @@ body {
 }
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+@font-face {
+    font-family: 'bootstrap-icons';
+    src: url('/assets/fonts/bootstrap-icons.woff2') format('woff2'),
+         url('/assets/fonts/bootstrap-icons.woff') format('woff');
+  }

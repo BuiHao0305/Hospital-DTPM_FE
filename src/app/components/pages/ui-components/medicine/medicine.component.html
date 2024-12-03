@@ -48,12 +48,14 @@
 
 @if (showChild) {
   <app-add-medicine
+  (reloadData)="reloadData()"
     (previewVisible)="showChildClick($event)"
   ></app-add-medicine>
 }
 @if (showChildUpdate) {
   <app-update-medicine
     [medicineId]="selectedMedicineId"
+    (reloadData)="reloadData()"
     (previewVisible)="showChildClickUpdate($event)"
   ></app-update-medicine>
 }
