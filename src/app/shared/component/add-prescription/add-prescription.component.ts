@@ -34,7 +34,17 @@ export class AddPrescriptionComponent implements OnInit {
 
   addMedicinePurchase() {}
 
-  submit() {}
+  submit() {
+    console.log('Form Value:', this.prescriptionForm.value);
+    console.log('Form Valid:', this.prescriptionForm.valid);
+  
+    if (this.prescriptionForm.valid) {
+      const newPrescription = this.prescriptionForm.value;
+      console.log('New Prescription:', newPrescription);
+    } else {
+      console.error('Form is invalid');
+    }
+  }
   blockFormClosing(event: MouseEvent) {
     event.stopPropagation();
   }
