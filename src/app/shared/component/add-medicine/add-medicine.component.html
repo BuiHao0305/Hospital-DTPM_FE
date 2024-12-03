@@ -1,7 +1,4 @@
-<div
-  class="modal1"
-  
->
+<div class="modal1">
   <div class="content">
     <div class="modal-header">
       <span></span>
@@ -39,6 +36,19 @@
             <small class="error"> price medicine is required </small>
           </div>
         }
+
+        <div class="column gender">
+          <label for="category">Category</label>
+          <select id="category" formControlName="category">
+            <option [value]="0">Khác</option>
+            <option [value]="1">Hạ sốt,Kháng viêm</option>
+            <option [value]="2">Giảm đau</option>
+            <option [value]="3">Tiêu hóa</option>
+            <option [value]="4">Da liễu</option>
+            <option [value]="5">Sát trùng</option>
+            <option [value]="6">Vitamin</option>
+          </select>
+        </div>
         <!-- description -->
         <label for="text">description:<span class="required">*</span></label>
         <input type="text" id="text" formControlName="description" />

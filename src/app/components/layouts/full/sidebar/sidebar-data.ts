@@ -39,10 +39,16 @@ export const navItems: NavItem[] = [
     route: '/ui-components/prescription',
   },
   {
-    displayName: 'Medicine',
-    iconName: 'receipt-2',
+    displayName: 'Money',
+    iconName: 'coin',
     bgcolor: 'error',
-    route: '/ui-components/add-medicine',
+    route: '/ui-components/statistics',
+  },
+  {
+    displayName: 'Money',
+    iconName: 'coin',
+    bgcolor: 'error',
+    route: '/ui-components/add',
   },
   // {
   //   navCap: 'Auth',

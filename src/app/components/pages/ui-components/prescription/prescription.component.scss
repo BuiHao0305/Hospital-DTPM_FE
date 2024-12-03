@@ -27,12 +27,16 @@ h2 {
 }
 
 .prescriptions-list-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1180px;
   border-radius: 15px;
   background-color: #d8d8d8;
   border-radius: 8px;
   margin: 30px 10px;
   padding: auto;
+  overflow-x: auto; 
+  white-space: nowrap;
+  position: relative;
 }
 
 .prescriptions-list-container th {
@@ -43,6 +47,8 @@ h2 {
 .prescriptions-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto; 
+  min-width: 1000px; 
   margin-bottom: 20px;
 }
 
@@ -59,12 +65,16 @@ h2 {
 }
 
 
-.pagination {
+mat-paginator {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Canh phải để phân trang nằm ở cuối */
   align-items: center;
+  text-align: center;
   margin-top: 10px;
   width: 100%;
+  bottom: 0; 
+  background-color: #fff; 
+  z-index: 10; 
 }
 
 
@@ -77,6 +87,26 @@ button {
   cursor: pointer;
 }
 
+.status {
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.edit-container i {
+  font-size: 20px;
+  
+}
 
 button:disabled {
   background-color: #ccc;
@@ -87,10 +117,50 @@ button:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
+/* Column Widths */
+.prescriptions-table th:nth-child(1) {
+  width: 20%;
+}
+
+.prescriptions-table th:nth-child(2) {
+  width: 24%;
+}
+
+.prescriptions-table th:nth-child(3) {
+  width: 17%;
+}
+
+.prescriptions-table th:nth-child(4) {
+  width: 16%;
+}
+
+.prescriptions-table th:nth-child(5) {
+  width: 17%;
+}
+
+.prescriptions-table th:nth-child(6) {
+  width: 7%;
+
+}
+
 @media (max-width: 768px) {
   .search-add-container {
     flex-direction: column;
     align-items: center;
+    overflow-x: scroll;
+  }.panigator{
+    max-width: 800px;
+    width: 100%;
+  }
+  mat-paginator {
+    flex-direction: row;
+    justify-content: center;
+    position: sticky; 
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 10;
+    max-width: 768px;
   }
 
   .search-add-container input {
@@ -110,23 +180,43 @@ button:hover:not(:disabled) {
   }
 
 
-  .pagination {
+  mat-paginator  {
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pagination button {
+    align-items: center;
+    align-items: center;
     width: 100%;
     margin-bottom: 5px;
+  }
+
+
+  .prescriptions-list-container {
+    overflow-x: auto;
+    
   }
 }
 
 @media (max-width: 480px) {
 
   .prescriptions-list-container {
-    padding: 10px;
+    padding: 2px;
+    overflow-x: scroll;
+    width: 100%;
   }
-
+  .panigator{
+    max-width: 800px;
+    width: 100%;
+    overflow-x: scroll;
+  }
+  mat-paginator  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+    width: 100%;
+    bottom: 0;
+    background-color: #fff;
+  }
   .prescriptions-table th,
   .prescriptions-table td {
     font-size: 0.9rem;

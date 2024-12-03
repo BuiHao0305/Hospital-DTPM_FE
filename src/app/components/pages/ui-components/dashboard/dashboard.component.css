@@ -1,0 +1,64 @@
+.dashboard-container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.dashboard-header {
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    padding: 40px;
+}
+
+.dashboard-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.dashboard-header p {
+    font-size: 18px;
+}
+
+.dashboard-content {
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+.facility, .service {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.facility h3, .service h3 {
+    color: #007bff;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.facility p, .service p {
+    font-size: 16px;
+    color: #555;
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #555;
+}
+
+.contact-info strong {
+    font-weight: bold;
+}

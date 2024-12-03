@@ -1,0 +1,41 @@
+<div class="money-container">
+  <div class="money-header">
+    <h2>Money Overview</h2>
+  </div>
+  <div class="money-stats">
+    <div class="stat-card income">
+      <h3>Total Income</h3>
+      <p class="amount">{{ totalIncome | currency: 'VND' }}</p>
+    </div>
+    <div class="stat-card expense">
+      <h3>Total Expenses</h3>
+      <p class="amount">{{ totalExpenses | currency: 'VND' }}</p>
+    </div>
+    <div class="stat-card balance">
+      <h3>Balance</h3>
+      <p class="amount">{{ balance | currency: 'VND' }}</p>
+    </div>
+  </div>
+  <div class="money-details">
+    <h3>Transaction Details</h3>
+    <table mat-table [dataSource]="transactions">
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.description }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.amount | currency: 'VND' }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let transaction">{{ transaction.date | date: 'short' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

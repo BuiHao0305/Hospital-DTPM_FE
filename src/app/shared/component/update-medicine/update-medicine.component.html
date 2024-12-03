@@ -1,0 +1,92 @@
+<div class="modal1">
+  <div class="content">
+    <div class="modal-header">
+      <span></span>
+      <button
+        class="close cancel"
+        (click)="blockFormClosing($event)"
+        (keydown.enter)="changeVisible()"
+        tabindex="0"
+        (click)="changeVisible()"
+      >
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Update Medicine</h2>
+      <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
+        <!-- name -->
+        <label for="text">name:<span class="required">*</span></label>
+        <input type="text" id="text" formControlName="name" />
+        @if (
+          medicineForm.get("name")?.invalid && medicineForm.get("name")?.touched
+        ) {
+          <div>
+            <small class="error"> name medicine is required </small>
+          </div>
+        }
+        <!-- price -->
+        <label for="text">price:<span class="required">*</span></label>
+        <input type="number" id="number" formControlName="price" />
+        @if (
+          medicineForm.get("price")?.invalid &&
+          medicineForm.get("price")?.touched
+        ) {
+          <div>
+            <small class="error"> price medicine is required </small>
+          </div>
+        }
+
+        <div class="column gender">
+          <label for="category">Category</label>
+          <select id="category" formControlName="category">
+            <option [value]="0">Khác</option>
+            <option [value]="1">Hạ sốt,Kháng viêm</option>
+            <option [value]="2">Giảm đau</option>
+            <option [value]="3">Tiêu hóa</option>
+            <option [value]="4">Da liễu</option>
+            <option [value]="5">Sát trùng</option>
+            <option [value]="6">Vitamin</option>
+          </select>
+        </div>
+        <!-- description -->
+        <label for="text">description:<span class="required">*</span></label>
+        <input type="text" id="text" formControlName="description" />
+        @if (
+          medicineForm.get("description")?.invalid &&
+          medicineForm.get("description")?.touched
+        ) {
+          <div>
+            <small class="error"> description medicine is required </small>
+          </div>
+        }
+        <!-- quantity -->
+        <label for="text">quantity:<span class="required">*</span></label>
+        <input type="number" id="number" formControlName="quantity" />
+        @if (
+          medicineForm.get("quantity")?.invalid &&
+          medicineForm.get("quantity")?.touched
+        ) {
+          <div>
+            <small class="error"> quantity medicine is required </small>
+          </div>
+        }
+
+        <button class="btn btn-lg loading-btn" *ngIf="loading">
+          <span class="spinner-border spinner-border-sm"></span>
+          {{ "BUCKET_MODAL.WAITING" }}
+        </button>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            [disabled]="medicineForm.invalid || loading"
+            [style.cursor]="loading ? 'not-allowed' : 'pointer'"
+          >
+          <i class="bi bi-arrow-clockwise"></i>
+            Update Medicine
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

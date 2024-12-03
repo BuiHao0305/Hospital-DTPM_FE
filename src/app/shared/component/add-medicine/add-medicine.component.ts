@@ -25,13 +25,20 @@ export class AddMedicineComponent implements OnInit {
   ngOnInit() {
     this.medicineForm = this.fb.group({
       name: ['', [Validators.required]],
-      price: ['',[Validators.required]],
-      description: ['',[Validators.required]],
-      quantity: ['',[Validators.required]]
-    })
+      price: [0, [Validators.required, Validators.min(999)]],  
+      description: ['', [Validators.required]],
+      quantity: [0, [Validators.required, Validators.min(1)]],
+      category: [0]
+    });
   }
   onSubmit(){
-
+    if (this.medicineForm.valid) {
+      const newMedicine = this.medicineForm.value;
+      console.log('New Medicine:', newMedicine);
+     
+    } else {
+      console.error('Form is invalid');
+    }
   }
   changeVisible() {
     this.previewVisible.emit(false);

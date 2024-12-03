@@ -17,22 +17,43 @@
   </button>
 </div>
 <div class="medicine-container">
-  @for (medicine of medicines; track $index) {
-  <div class="medicine-card">
-    <div class="medicine-info">
-      <h1 class="medicine-name">{{ medicine.name }}</h1>
-      <p class="medicine-description">{{ medicine.description }}</p>
-      <span class="medicine-category">Category {{ medicine.category | medicineCategory }}</span>
-      <div class="medicine-details">
-        <span class="medicine-price">${{ medicine.price }}</span>
-        
+  @for (medicine of dataSource.data; track $index) {
+    <div class="medicine-card">
+      <div
+        class="medicine-info"
+        tabindex="0"
+        (click)="toggleChildUpdate()"
+        (keydown)="toggleChildUpdate()"
+        (click)="onMedicineClick(medicine.id)"
+      >
+        <h1 class="medicine-name">{{ medicine.name }}</h1>
+        <p class="medicine-description">{{ medicine.description }}</p>
+        <span class="medicine-category"
+          >Category {{ medicine.category | medicineCategory }}</span
+        >
+        <div class="medicine-details">
+          <span class="medicine-price">${{ medicine.price }} VND</span>
+        </div>
+        <span class="medicine-quantity">Quantity: {{ medicine.quantity }}</span>
       </div>
-      <span class="medicine-quantity">Quantity: {{ medicine.quantity }}</span>
     </div>
-  </div>
   }
 </div>
+<mat-paginator
+  [length]="medicines.length"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25]"
+  aria-label="Chọn trang"
+></mat-paginator>
 
 @if (showChild) {
-<app-add-medicine (previewVisible)="showChildClick($event)"></app-add-medicine>
+  <app-add-medicine
+    (previewVisible)="showChildClick($event)"
+  ></app-add-medicine>
+}
+@if (showChildUpdate) {
+  <app-update-medicine
+    [medicineId]="selectedMedicineId"
+    (previewVisible)="showChildClickUpdate($event)"
+  ></app-update-medicine>
 }

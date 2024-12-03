@@ -1,0 +1,90 @@
+.money-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .money-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .money-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .stat-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .stat-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .stat-card .amount {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .income {
+    background-color: #d4edda;
+  }
+  
+  .expense {
+    background-color: #f8d7da;
+  }
+  
+  .balance {
+    background-color: #fff3cd;
+  }
+  
+  .money-details {
+    margin-top: 30px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  td {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  @media (max-width: 768px) {
+    .money-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .stat-card {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  }
+  

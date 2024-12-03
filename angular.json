@@ -8,7 +8,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-          
         }
       },
       "root": "",
@@ -18,7 +17,11 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["apexcharts", "bezier-easing", "moment"],
+            "allowedCommonJsDependencies": [
+              "apexcharts",
+              "bezier-easing",
+              "moment"
+            ],
             "outputPath": "dist/Spike",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -29,9 +32,12 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/style.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -23,7 +23,7 @@ export class MedicineCategoryPipe implements PipeTransform {
       case MedicineCategory.GIAM_DAU:
         return 'Thuốc giảm đau';
       case MedicineCategory.TIEU_HOA:
-        return 'Thuốc tiêu hóa';
+        return 'Thuốc giảm đau';
       case MedicineCategory.DA_LIEU:
         return 'Thuốc da liễu';
       case MedicineCategory.SAT_TRUNG:
