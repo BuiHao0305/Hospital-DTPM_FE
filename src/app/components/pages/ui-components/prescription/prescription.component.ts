@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 import { BrowserModule } from "@angular/platform-browser";
 import { AddPrescriptionComponent } from "src/app/shared/component/add-prescription/add-prescription.component";
 import { DonePrescriptionComponent } from "src/app/shared/dialog/done-prescription/done-prescription.component";
+import { UpdatePrescriptionComponent } from "../../../../shared/component/update-prescription/update-prescription.component";
 export interface MedicinePurchase {
   name: string;
   quantity: number;
@@ -36,10 +37,12 @@ export interface Prescription {
     CommonModule,
     MatPaginatorModule,
     MatTableModule,
-  ],
+    UpdatePrescriptionComponent
+],
 })
 export class PrescriptionComponent implements OnInit {
   showChild = false;
+  showChildUpdate = false;
   displayedColumns: string[] = [
     "patientName",
     "medicinePurchases",
@@ -54,7 +57,7 @@ export class PrescriptionComponent implements OnInit {
   totalItems: number = 0;
   currentPage: number = 0;
   pageSize: number = 6;
-
+  selectedPrescriptionId = "";
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   constructor(private dialog: MatDialog) {}
@@ -137,7 +140,16 @@ export class PrescriptionComponent implements OnInit {
   showChildClick(value: boolean) {
     this.showChild = value;
   }
-  formatDate(date: Date): string {
-    return date.toISOString().split("T")[0]; // Trả về "YYYY-MM-DD"
+  toggleChildUpdate() {
+    this.showChildUpdate = !this.showChild;
   }
+
+  showChildClickUpdate(value: boolean) {
+    this.showChildUpdate = value;
+  }
+  onMedicineClick(id: string) {
+    this.selectedPrescriptionId = id;
+    console.log("Medicine ID:", this.selectedPrescriptionId);
+  }
+ 
 }

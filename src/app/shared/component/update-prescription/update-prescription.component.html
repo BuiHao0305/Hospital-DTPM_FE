@@ -1,0 +1,103 @@
+
+<div class="modal1">
+  <div class="content">
+    <div class="modal-header">
+      <span></span>
+      <button
+        class="close cancel"
+        (click)="blockFormClosing($event)"
+        (keydown.enter)="changeVisible()"
+        tabindex="0"
+        (click)="changeVisible()"
+      >
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Create Prescription</h2>
+      <form [formGroup]="prescriptionForm" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="patientName">Patient Name</label>
+          <input
+            id="patientName"
+            formControlName="patientName"
+            type="text"
+            class="form-control"
+            
+          />
+          
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">PhoneNumber</label>
+          <input
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            type="number"
+            class="form-control"
+            
+          />
+         
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">Appointment Date</label>
+          <input
+            id="appointmentDate"
+            formControlName="appointmentDate"
+            type="date"
+            class="form-control"
+            
+          />
+      
+        </div>
+       
+        <div formArrayName="medicinePurchases">
+          <div
+            *ngFor="let medicine of medicinePurchases.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <label>Medicine:</label>
+            <select formControlName="id">
+              <option [value]="null" disabled>Select Medicine</option>
+              <option *ngFor="let med of medicinesList" [value]="med.id">
+                {{ med.name }}
+              </option>
+            </select>
+      
+            <label>Quantity:</label>
+            <input formControlName="quantity" type="number" />
+      
+            <button class="btn btn-remove-medicine" type="button" (click)="removeMedicine(i)">Remove</button>
+          </div>
+        </div>
+        <button class="btn btn-add-medicine mt-2" type="button" (click)="addMedicine()">Add Medicine</button>
+
+        <div class="form-group">
+          <label for="consultationFee">Medical Fee</label>
+          <input
+            id="consultationFee"
+            formControlName="consultationFee"
+            type="number"
+            class="form-control"
+          />
+          @if (
+            prescriptionForm.get("consultationFee")?.invalid &&
+            prescriptionForm.get("consultationFee")?.touched
+          ) {
+            <div class="error">Valid Consultation Fee is required.</div>
+          }
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="prescriptionForm.invalid"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-plus"></i>
+          Add Prescription
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -88,7 +88,12 @@
       <th mat-header-cell *matHeaderCellDef>Edit</th>
       <td mat-cell *matCellDef="let prescription">
         @if (prescription.status === false) {
-          <button class="edit" (click)="onEditClick(prescription.id)">
+          <button
+            class="edit"
+            (click)="toggleChildUpdate()"
+            (keydown)="toggleChildUpdate()"
+            (click)="onMedicineClick(prescription.id)"
+          >
             <i class="bi bi-gear"></i>
           </button>
         }
@@ -105,16 +110,22 @@
 
   <div class="panigator">
     <mat-paginator
-    [length]="totalItems"
-    [pageSize]="pageSize"
-    [pageIndex]="currentPage"
-    (page)="onPageChanged($event)"
-  >
-  </mat-paginator>
+      [length]="totalItems"
+      [pageSize]="pageSize"
+      [pageIndex]="currentPage"
+      (page)="onPageChanged($event)"
+    >
+    </mat-paginator>
   </div>
 </div>
 @if (showChild) {
   <app-add-prescription
     (previewVisible)="showChildClick($event)"
   ></app-add-prescription>
+}
+@if (showChildUpdate) {
+  <app-update-prescription
+    [presciptionId]="selectedPrescriptionId"
+    (previewVisible)="showChildClickUpdate($event)"
+  ></app-update-prescription>
 }
