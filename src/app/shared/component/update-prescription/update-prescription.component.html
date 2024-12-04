@@ -23,7 +23,7 @@
             formControlName="patientName"
             type="text"
             class="form-control"
-            
+            readonly
           />
           
         </div>
@@ -35,7 +35,7 @@
             formControlName="phoneNumber"
             type="number"
             class="form-control"
-            
+            readonly
           />
          
         </div>
@@ -47,7 +47,7 @@
             formControlName="appointmentDate"
             type="date"
             class="form-control"
-            
+            readonly
           />
       
         </div>
@@ -57,16 +57,16 @@
             *ngFor="let medicine of medicinePurchases.controls; let i = index"
             [formGroupName]="i"
           >
-            <label>Medicine:</label>
-            <select formControlName="id">
-              <option [value]="null" disabled>Select Medicine</option>
-              <option *ngFor="let med of medicinesList" [value]="med.id">
-                {{ med.name }}
-              </option>
-            </select>
-      
-            <label>Quantity:</label>
-            <input formControlName="quantity" type="number" />
+          <label>Medicine:</label>
+          <select formControlName="medicineId">
+            <option [value]="null" disabled>Select Medicine</option>
+            <option *ngFor="let med of medicinesList" [value]="med.id">
+              {{ med.name }}
+            </option>
+          </select>
+          
+          <label>Quantity:</label>
+          <input formControlName="quantity" type="number" />
       
             <button class="btn btn-remove-medicine" type="button" (click)="removeMedicine(i)">Remove</button>
           </div>

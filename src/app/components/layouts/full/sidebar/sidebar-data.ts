@@ -20,12 +20,7 @@ export const navItems: NavItem[] = [
     bgcolor: 'primary',
     route: '/ui-components/appointment',
   },
-  {
-    displayName: 'Doctor',
-    iconName: 'stethoscope',
-    bgcolor: 'warning',
-    route: '/ui-components/doctor',
-  },
+
   {
     displayName: 'Medicine',
     iconName: 'pill',
@@ -35,7 +30,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Prescription',
     iconName: 'receipt-2',
-    bgcolor: 'error',
+    bgcolor: 'warning',
     route: '/ui-components/prescription',
   },
   {
@@ -44,12 +39,7 @@ export const navItems: NavItem[] = [
     bgcolor: 'error',
     route: '/ui-components/statistics',
   },
-  {
-    displayName: 'Money',
-    iconName: 'coin',
-    bgcolor: 'error',
-    route: '/ui-components/add',
-  },
+
   // {
   //   navCap: 'Auth',
   // },

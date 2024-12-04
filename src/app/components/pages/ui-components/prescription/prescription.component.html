@@ -42,7 +42,7 @@
       <td mat-cell *matCellDef="let prescription">
         <ul>
           <li *ngFor="let medicine of prescription.medicinePurchases">
-            {{ medicine.name }} ({{ medicine.quantity }} x {{ medicine.price }})
+            {{ medicine.medicineName }} ({{ medicine.quantity }} x {{ medicine.price }})
           </li>
         </ul>
       </td>
@@ -120,11 +120,13 @@
 </div>
 @if (showChild) {
   <app-add-prescription
+  (reloadData)="reloadData()"
     (previewVisible)="showChildClick($event)"
   ></app-add-prescription>
 }
 @if (showChildUpdate) {
   <app-update-prescription
+  (reloadData)="reloadData()"
     [presciptionId]="selectedPrescriptionId"
     (previewVisible)="showChildClickUpdate($event)"
   ></app-update-prescription>

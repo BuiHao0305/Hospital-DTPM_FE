@@ -5,6 +5,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AddAppoinmentComponent } from "../../../../shared/component/add-appoinment/add-appoinment.component";
 import { UpdateAppointmentComponent } from "../../../../shared/component/update-appointment/update-appointment.component";
+import { AppointmentService } from 'src/app/components/services/appointment.service';
 
 interface Appointment {
   id: string;
@@ -38,68 +39,33 @@ export class AppointmentComponent implements OnInit {
   dataSource = new MatTableDataSource<Appointment>([]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  constructor(private appointmentService: AppointmentService) {}
   ngOnInit(): void {
-    // Fetch data
-    this.loadAppointments();
+  
+    this.reloadData();
   }
 
-  loadAppointments(): void {
-    const data: Appointment[] = [
-      {
-        id: '1',
-        patientName: 'John Doe',
-        phoneNumber: '123456789',
-        appointmentDate: new Date('2024-12-01'),
-        notes: 'Check-up',
-        status: true
+  reloadData(): void {
+    this.appointmentService.getAppointments().subscribe(
+      (response) => {
+        if (response && response.data) {
+          const appointments: Appointment[] = response.data.map((appointment: any) => ({
+            id: appointment.id,
+            patientName: appointment.patientName,
+            phoneNumber: appointment.phoneNumber,
+            appointmentDate: new Date(appointment.appointmentDate),
+            notes: appointment.notes,
+            status: appointment.status
+          }));
+          this.dataSource.data = appointments;
+          this.dataSource.paginator = this.paginator;
+        }
       },
-      {
-        id: '2',
-        patientName: 'John Doe',
-        phoneNumber: '123456789',
-        appointmentDate: new Date('2024-12-01'),
-        notes: 'Check-up',
-        status: false
-      },
-      {
-        id: '3',
-        patientName: 'John Doe',
-        phoneNumber: '123456789',
-        appointmentDate: new Date('2024-12-01'),
-        notes: 'Check-up',
-        status: true
-      },
-      {
-        id: '4',
-        patientName: 'John Doe',
-        phoneNumber: '123456789',
-        appointmentDate: new Date('2024-12-01'),
-        notes: 'Check-up',
-        status: false
-      },
-      {
-        id: '5',
-        patientName: 'John Doe',
-        phoneNumber: '123456789',
-        appointmentDate: new Date('2024-12-01'),
-        notes: 'Check-up',
-        status: true
-      },
-      {
-        id: '6',
-        patientName: 'John Doe',
-        phoneNumber: '123456789',
-        appointmentDate: new Date('2024-12-01'),
-        notes: 'Check-up',
-        status: false
-      },
-
-      // Add more appointments here
-    ];
-
-    this.dataSource.data = data;
-    this.dataSource.paginator = this.paginator;
+      (error) => {
+        console.error('Error fetching appointments:', error);
+        alert('Error fetching appointments');
+      }
+    );
   }
   toggleChild() {
     this.showChild = !this.showChild;
