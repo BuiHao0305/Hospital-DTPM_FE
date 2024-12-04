@@ -1,0 +1,166 @@
+/* Tiêu đề */
+h2 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.search-add-container input {
+
+  border-radius: 20px;
+  width: 70%;
+  margin-right: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.search-add-container button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+/* Bảng */
+table.mat-elevation-z8 {
+  width: 100%;
+  overflow-x: scroll;
+  border-collapse: collapse;
+
+  table-layout: auto;
+}
+
+th.mat-header-cell, td.mat-cell {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th.mat-header-cell {
+  overflow-x: scroll;
+  background-color: #f2f2f2;
+  font-weight: 800;
+  font-size: 16px;
+  color: #333;
+}
+
+td.mat-cell {
+  font-size: 14px;
+  color: #555;
+}
+
+mat-header-row {
+  background-color: #f2f2f2;
+}
+
+/* Cột Trạng thái */
+.status {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.status:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.status:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+button.edit {
+  padding: 8px 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button.edit:disabled {
+  cursor: not-allowed;
+}
+
+button.edit i {
+  font-size: 20px;
+  color: #007bff;
+}
+
+button.edit:disabled i {
+  color: #ccc;
+}
+
+/* Paginator */
+mat-paginator {
+  display: flex;
+  justify-content: center;
+ 
+  background-color: #fff;
+  padding: 10px;
+}
+
+mat-paginator .mat-paginator-range-label,
+mat-paginator .mat-paginator-page-size {
+  color: #007bff;
+}
+
+/* Phản hồi với màn hình nhỏ */
+@media (max-width: 768px) {
+  /* Điều chỉnh cho các thành phần tìm kiếm, nút thêm mới */
+  .search-add-container {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .search-add-container input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .search-add-container button {
+    width: 100%;
+  }
+
+  /* Điều chỉnh bảng khi kích thước nhỏ */
+  table.mat-elevation-z8 {
+    font-size: 0.9rem;
+  }
+
+  th.mat-header-cell, td.mat-cell {
+    padding: 8px;
+  }
+
+  .status, .edit {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .status, .edit {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  table.mat-elevation-z8 {
+    font-size: 0.8rem;
+  }
+
+  mat-paginator {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+}

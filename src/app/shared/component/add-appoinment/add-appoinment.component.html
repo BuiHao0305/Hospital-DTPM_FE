@@ -1,0 +1,93 @@
+<div class="modal1">
+  <div class="content">
+    <div class="modal-header">
+      <span></span>
+      <button
+        class="close cancel"
+        (click)="blockFormClosing($event)"
+        (keydown.enter)="changeVisible()"
+        tabindex="0"
+        (click)="changeVisible()"
+      >
+        X
+      </button>
+    </div>
+    <div class="modal-body">
+      <h2>Add Appointment</h2>
+      <form [formGroup]="addAppointment" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="patientName">Patient Name</label>
+          <input
+            id="patientName"
+            formControlName="patientName"
+            type="text"
+            class="form-control"
+          />
+          @if (
+            addAppointment.get("patientName")?.invalid &&
+            addAppointment.get("patientName")?.touched
+          ) {
+            <div class="error">Patient Name is required.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">PhoneNumber</label>
+          <input
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            type="number"
+            class="form-control"
+          />
+          @if (
+            addAppointment.get("phoneNumber")?.invalid &&
+            addAppointment.get("phoneNumber")?.touched
+          ) {
+            <div class="error">Valid phoneNumber is required.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">Apointment Date</label>
+          <input
+            id="appointmentDate"
+            formControlName="appointmentDate"
+            type="date"
+            class="form-control"
+          />
+          @if (
+            addAppointment.get("appointmentDate")?.invalid &&
+            addAppointment.get("appointmentDate")?.touched
+          ) {
+            <div class="error">Valid appointmentDate is required.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">Notes</label>
+          <input
+            id="notes"
+            formControlName="notes"
+            type="text"
+            class="form-control"
+          />
+          @if (
+            addAppointment.get("notes")?.invalid &&
+            addAppointment.get("notes")?.touched
+          ) {
+            <div class="error">Valid notes is required.</div>
+          }
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="addAppointment.invalid"
+          class="btn btn-primary"
+        >
+          <i class="bi bi-plus"></i>
+          Add Appointment
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

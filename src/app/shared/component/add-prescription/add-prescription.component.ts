@@ -29,6 +29,8 @@ export class AddPrescriptionComponent implements OnInit {
       patientName: ["", Validators.required],
       medicinePurchases: this.fb.array([]),
       consultationFee: [0, [Validators.required, Validators.min(1000)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(9)]],
+      appointmentDate:['',Validators.required]
     });
   }
 

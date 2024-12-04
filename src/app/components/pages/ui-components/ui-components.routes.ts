@@ -6,6 +6,7 @@ import { PrescriptionComponent } from "./prescription/prescription.component";
 import { AddMedicineComponent } from "src/app/shared/component/add-medicine/add-medicine.component";
 import { MoneyComponent } from "./money/money.component";
 import { AddPrescriptionComponent } from "src/app/shared/component/add-prescription/add-prescription.component";
+import { AddAppoinmentComponent } from "src/app/shared/component/add-appoinment/add-appoinment.component";
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -17,7 +18,7 @@ export const UiComponentsRoutes: Routes = [
       { path: "prescription", component: PrescriptionComponent },
       { path: "add-medicine", component: AddMedicineComponent },
       { path: "statistics", component: MoneyComponent },
-      { path: "add", component: AddPrescriptionComponent },
+      { path: "add", component: AddAppoinmentComponent },
     ],
   },
 ];

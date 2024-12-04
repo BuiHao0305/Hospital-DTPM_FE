@@ -98,7 +98,39 @@
         </div>
 
         <div class="form-group">
-          <label for="consultationFee">Consultation Fee</label>
+          <label for="consultationFee">PhoneNumber</label>
+          <input
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            type="number"
+            class="form-control"
+          />
+          @if (
+            prescriptionForm.get("phoneNumber")?.invalid &&
+            prescriptionForm.get("phoneNumber")?.touched
+          ) {
+            <div class="error">Valid phoneNumber is required.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">Pppointment Date</label>
+          <input
+            id="appointmentDate"
+            formControlName="appointmentDate"
+            type="date"
+            class="form-control"
+          />
+          @if (
+            prescriptionForm.get("appointmentDate")?.invalid &&
+            prescriptionForm.get("appointmentDate")?.touched
+          ) {
+            <div class="error">Valid appointmentDate is required.</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="consultationFee">Medical Fee</label>
           <input
             id="consultationFee"
             formControlName="consultationFee"
@@ -118,6 +150,7 @@
           [disabled]="prescriptionForm.invalid"
           class="btn btn-primary"
         >
+          <i class="bi bi-plus"></i>
           Add Prescription
         </button>
       </form>

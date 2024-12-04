@@ -16,6 +16,8 @@ export interface MedicinePurchase {
 export interface Prescription {
   id: string;
   patientName: string;
+  phoneNumber: string;
+  appointmentDate: string;
   medicinePurchases: MedicinePurchase[];
   consultationFee: number;
   status: boolean;
@@ -32,7 +34,7 @@ export interface Prescription {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    MatPaginatorModule, 
+    MatPaginatorModule,
     MatTableModule,
   ],
 })
@@ -41,6 +43,8 @@ export class PrescriptionComponent implements OnInit {
   displayedColumns: string[] = [
     "patientName",
     "medicinePurchases",
+    "phoneNumber",
+    "appointmentDate",
     "consultationFee",
     "totalCost",
     "status",
@@ -49,12 +53,12 @@ export class PrescriptionComponent implements OnInit {
   dataSource = new MatTableDataSource<Prescription>();
   totalItems: number = 0;
   currentPage: number = 0;
-  pageSize: number = 8;
+  pageSize: number = 6;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
   constructor(private dialog: MatDialog) {}
- 
+
   ngOnInit(): void {
     this.loadPrescriptions();
   }
@@ -64,15 +68,23 @@ export class PrescriptionComponent implements OnInit {
       {
         id: "1",
         patientName: "John Doe",
-        medicinePurchases: [{ name: "Medicine A", quantity: 2, price: 10 }],
+        phoneNumber: "0123456789",
+        appointmentDate: "2024-12-01",
+        medicinePurchases: [
+          { name: "Paracetamol", quantity: 2, price: 10 },
+          { name: "Paracetamol", quantity: 2, price: 10 },
+          { name: "Paracetamol", quantity: 2, price: 10 },
+        ],
         consultationFee: 50,
         status: true,
-        totalCost: 70,
+        totalCost: 110,
       },
       {
         id: "2",
         patientName: "Jane Smith",
-        medicinePurchases: [{ name: "Medicine B", quantity: 1, price: 15 }],
+        phoneNumber: "0987654321",
+        appointmentDate: "2024-12-02",
+        medicinePurchases: [{ name: "Ibuprofen", quantity: 1, price: 15 }],
         consultationFee: 45,
         status: false,
         totalCost: 60,
@@ -80,78 +92,12 @@ export class PrescriptionComponent implements OnInit {
       {
         id: "3",
         patientName: "David Brown",
-        medicinePurchases: [{ name: "Medicine C", quantity: 3, price: 5 }],
+        phoneNumber: "0112233445",
+        appointmentDate: "2024-12-03",
+        medicinePurchases: [{ name: "Amoxicillin", quantity: 3, price: 5 }],
         consultationFee: 40,
         status: true,
         totalCost: 55,
-      },
-      {
-        id: "4",
-        patientName: "Emily White",
-        medicinePurchases: [{ name: "Medicine D", quantity: 4, price: 8 }],
-        consultationFee: 60,
-        status: false,
-        totalCost: 92,
-      },
-      {
-        id: "5",
-        patientName: "Michael Johnson",
-        medicinePurchases: [{ name: "Medicine E", quantity: 2, price: 12 }],
-        consultationFee: 50,
-        status: true,
-        totalCost: 74,
-      },
-      {
-        id: "6",
-        patientName: "Sarah Lee",
-        medicinePurchases: [{ name: "Medicine F", quantity: 1, price: 18 }],
-        consultationFee: 55,
-        status: false,
-        totalCost: 73,
-      },
-      {
-        id: "7",
-        patientName: "Robert Harris",
-        medicinePurchases: [{ name: "Medicine G", quantity: 5, price: 6 }],
-        consultationFee: 60,
-        status: true,
-        totalCost: 90,
-      },
-      {
-        id: "8",
-        patientName: "Sophia Clark",
-        medicinePurchases: [{ name: "Medicine H", quantity: 2, price: 9 }],
-        consultationFee: 52,
-        status: false,
-        totalCost: 70,
-      },
-      {
-        id: "9",
-        patientName: "William Lewis",
-        medicinePurchases: [{ name: "Medicine I", quantity: 3, price: 7 }],
-        consultationFee: 50,
-        status: true,
-        totalCost: 71,
-      },
-      {
-        id: "10",
-        patientName: "Olivia Walker",
-        medicinePurchases: [
-          { name: "Medicine J", quantity: 2, price: 11 },
-          { name: "Medicine J", quantity: 2, price: 11 },
-          { name: "Medicine J", quantity: 2, price: 11 },
-        ],
-        consultationFee: 58,
-        status: true,
-        totalCost: 80,
-      },
-      {
-        id: "11",
-        patientName: "William Lewis",
-        medicinePurchases: [{ name: "Medicine I", quantity: 3, price: 7 }],
-        consultationFee: 50,
-        status: true,
-        totalCost: 71,
       },
     ];
 
@@ -190,5 +136,8 @@ export class PrescriptionComponent implements OnInit {
 
   showChildClick(value: boolean) {
     this.showChild = value;
+  }
+  formatDate(date: Date): string {
+    return date.toISOString().split("T")[0]; // Trả về "YYYY-MM-DD"
   }
 }

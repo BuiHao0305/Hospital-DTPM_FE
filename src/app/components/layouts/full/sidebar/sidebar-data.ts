@@ -17,7 +17,7 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Appointmnet',
     iconName: 'calendar-month',
-    bgcolor: 'accent',
+    bgcolor: 'primary',
     route: '/ui-components/appointment',
   },
   {
