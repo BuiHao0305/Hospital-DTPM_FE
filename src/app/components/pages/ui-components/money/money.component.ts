@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatTableModule } from "@angular/material/table";
+import { MoneyService } from "src/app/components/services/money.service";
 
 @Component({
   selector: "app-money",
@@ -12,19 +13,31 @@ import { MatTableModule } from "@angular/material/table";
   imports: [MatPaginatorModule, FormsModule, CommonModule, MatTableModule],
 })
 export class MoneyComponent implements OnInit {
-  totalIncome: number = 15000000; // Example total income (VND)
-  totalExpenses: number = 8000000; // Example total expenses (VND)
+  totalIncome: number = 0; // Example total income (VND)
+  totalExpenses: number = 0; // Example total expenses (VND)
   balance: number = this.totalIncome - this.totalExpenses;
 
-  displayedColumns: string[] = ["description", "amount", "date"];
+  totalCost: number; 
+
+  displayedColumns: string[] = ['description', 'amount', 'date'];
   transactions = [
-    { description: "Consultation Fees", amount: 5000000, date: new Date() },
-    { description: "Medicine Sales", amount: 3000000, date: new Date() },
-    { description: "Staff Salaries", amount: -2000000, date: new Date() },
-    { description: "Office Rent", amount: -3000000, date: new Date() },
   ];
 
-  constructor() {}
+  constructor(private moneyService: MoneyService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.moneyService.getTotalCost().subscribe(
+      (data) => {
+        this.totalIncome = data.totalcost;
+        console.log('Total cost:', this.totalIncome);
+        this.updateBalance()
+      },
+      (error) => {
+        console.error('Error fetching total cost:', error);
+      }
+    );
+  }
+  updateBalance(): void {
+    this.balance = this.totalIncome - this.totalExpenses;
+  }
 }
