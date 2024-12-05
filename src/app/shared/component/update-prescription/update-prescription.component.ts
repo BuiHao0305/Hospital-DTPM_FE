@@ -17,6 +17,7 @@ import {
 } from "@angular/forms";
 import { MedicineService } from "src/app/components/services/medicine.service";
 import { PrescriptionService } from "src/app/components/services/prescription.service";
+import { SnackbarService } from "../../snackbar/snackbar.service";
 
 @Component({
   selector: "app-update-prescription",
@@ -38,7 +39,8 @@ export class UpdatePrescriptionComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private prescriptionService: PrescriptionService,
-    private medicineService: MedicineService
+    private medicineService: MedicineService,
+    private snackbar: SnackbarService,
   ) {}
 
   ngOnInit(): void {
@@ -120,8 +122,7 @@ export class UpdatePrescriptionComponent implements OnInit {
   
       this.prescriptionService.addMedicinesToPrescription(prescriptionId, prescriptionData).subscribe(
         (response) => {
-          console.log('Prescription updated successfully:', response);
-          alert('Prescription updated successfully!');
+          this.snackbar.show('Prescription updated successfully!');
           this.reloadData.emit();
           this.changeVisible();
           this.previewVisible.emit(false);

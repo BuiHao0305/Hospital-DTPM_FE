@@ -9,6 +9,7 @@ import { AddPrescriptionComponent } from "src/app/shared/component/add-prescript
 import { DonePrescriptionComponent } from "src/app/shared/dialog/done-prescription/done-prescription.component";
 import { UpdatePrescriptionComponent } from "../../../../shared/component/update-prescription/update-prescription.component";
 import { PrescriptionService } from "src/app/components/services/prescription.service";
+import { AppointmentService } from "src/app/components/services/appointment.service";
 export interface MedicinePurchase {
   id: string;
   name: string;
@@ -66,7 +67,8 @@ export class PrescriptionComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private prescriptionService: PrescriptionService
+    private prescriptionService: PrescriptionService,
+    private apointmentService: AppointmentService,
   ) {}
 
   ngOnInit(): void {
@@ -91,17 +93,55 @@ export class PrescriptionComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     }
   }
-  onEditClick(id: string) {
-    console.log("Edit prescription with ID:", id);
+  onEditClick(prescriptionId: string) {
+    console.log("Edit prescription with ID:", prescriptionId);
   }
-  changeStatus() {
+  onEditClick1(apointmentId: string) {
+    console.log("Edit prescription with ID:", apointmentId);
+  }
+  changeStatus(prescriptionId: string, appointmentId: string): void {
     const dialogRef = this.dialog.open(DonePrescriptionComponent);
-
+  
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log("Prescription done:", result);
+        this.updateSatus
+        this.prescriptionService.updatePrescriptionStatus(prescriptionId).subscribe({
+          next: (res) => {
+            console.log("Prescription status updated successfully:", res);
+           
+          },
+          error: (err) => {
+            console.error("Error updating prescription status:", err);
+          }
+        });
+        
+        this.apointmentService.updateAppointmentStatus(appointmentId).subscribe({
+          next: (res) => {
+            console.log("Appointment status updated successfully:", res);
+          },
+          error: (err) => {
+            console.error("Error updating appointment status:", err);
+          }
+        });
+        setTimeout(() => {
+          this.updateSatus(prescriptionId);
+        }, 800);
+        this.reloadData();
       } else {
         console.log("Prescription not done:", result);
+      }
+     
+    });
+  }
+  updateSatus(prescriptionId: string) :void{
+    this.prescriptionService.updatePrescriptionStatus(prescriptionId).subscribe({
+      next: (res) => {
+        console.log("Prescription status updated successfully:", res);
+       
+      },
+      error: (err) => {
+        console.error("Error updating prescription status:", err);
       }
     });
   }

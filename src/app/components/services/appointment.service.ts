@@ -24,4 +24,8 @@ export class AppointmentService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<any>(url, appointmentData);
   }
+  updateAppointmentStatus(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}/status`;
+    return this.http.put<any>(url, {});
+  }
 }

@@ -28,4 +28,8 @@ export class PrescriptionService {
   addMedicinesToPrescription(id: string, prescriptionData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/${id}/addMedicines`, prescriptionData);
   }
+  updatePrescriptionStatus(id: string): Observable<any> {
+    const url = `${this.apiUrl}/${id}/status?status=true`;
+    return this.http.patch<any>(url, {});
+  }
 }

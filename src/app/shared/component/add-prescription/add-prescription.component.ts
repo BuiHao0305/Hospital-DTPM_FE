@@ -36,6 +36,7 @@ export class AddPrescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     this.prescriptionForm = this.fb.group({
+      appointmentId: [''],
       patientName: ["", Validators.required],
       medicinePurchases: this.fb.array([]),
       consultationFee: [0, [Validators.required, Validators.min(1000)]],
@@ -50,14 +51,15 @@ export class AddPrescriptionComponent implements OnInit {
     });
   }
   onSelectAppointment(event: Event) {
-    const target = event.target as HTMLSelectElement; // Ép kiểu target là HTMLSelectElement
-    const value = target.value; // Lấy giá trị của select
+    const target = event.target as HTMLSelectElement; 
+    const value = target.value; 
 
     if (value) {
       const appointment = this.appointments.find((a) => a.id === value);
       if (appointment) {
         this.selectedAppointment = appointment;
         this.prescriptionForm.patchValue({
+          appointmentId: appointment.id,
           patientName: appointment.patientName,
           phoneNumber: appointment.phoneNumber,
           appointmentDate: appointment.appointmentDate,

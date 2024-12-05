@@ -67,9 +67,10 @@
         mat-cell
         *matCellDef="let prescription"
         (click)="onEditClick(prescription.id)"
+        (click)="onEditClick1(prescription.appointmentId)"
       >
         @if (prescription.status === false) {
-          <button (click)="changeStatus()" class="status">
+          <button (click)="changeStatus(prescription.id, prescription.appointmentId)" class="status">
             <ng-container>
               {{ "Chưa thanh toán" }}
             </ng-container>

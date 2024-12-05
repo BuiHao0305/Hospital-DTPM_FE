@@ -17,11 +17,14 @@
         <!-- Select Appointment -->
         <div class="form-group">
           <label for="appointmentSelect">Select Appointment</label>
+        
           <select
             id="appointmentSelect"
             (change)="onSelectAppointment($event)"
             class="form-control"
           >
+          <option value="null" >Chọn bệnh nhân</option>
+          
             <option
               *ngFor="let appointment of appointments"
               [value]="appointment.id"
