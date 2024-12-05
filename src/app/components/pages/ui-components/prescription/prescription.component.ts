@@ -10,6 +10,7 @@ import { DonePrescriptionComponent } from "src/app/shared/dialog/done-prescripti
 import { UpdatePrescriptionComponent } from "../../../../shared/component/update-prescription/update-prescription.component";
 import { PrescriptionService } from "src/app/components/services/prescription.service";
 import { AppointmentService } from "src/app/components/services/appointment.service";
+import { SnackbarService } from "src/app/shared/snackbar/snackbar.service";
 export interface MedicinePurchase {
   id: string;
   name: string;
@@ -69,6 +70,7 @@ export class PrescriptionComponent implements OnInit {
     private dialog: MatDialog,
     private prescriptionService: PrescriptionService,
     private apointmentService: AppointmentService,
+    private snackbar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -127,7 +129,11 @@ export class PrescriptionComponent implements OnInit {
         setTimeout(() => {
           this.updateSatus(prescriptionId);
         }, 800);
-        this.reloadData();
+        setTimeout(() => {
+          this.reloadData();
+        }, 800);
+        this.snackbar.show("Prescription status updated successfully");
+        
       } else {
         console.log("Prescription not done:", result);
       }
